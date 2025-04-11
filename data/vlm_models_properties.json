@@ -1,0 +1,893 @@
+[
+  {
+    "model": "RN101",
+    "image_size": 224.0,
+    "mparams": 119.69,
+    "gflops": 25.5,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "RN50",
+    "image_size": 224.0,
+    "mparams": 102.01,
+    "gflops": 18.18,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "RN50x16",
+    "image_size": 384.0,
+    "mparams": 290.98,
+    "gflops": 162.69,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "RN50x4",
+    "image_size": 288.0,
+    "mparams": 178.3,
+    "gflops": 51.82,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "RN50x64",
+    "image_size": 448.0,
+    "mparams": 623.26,
+    "gflops": 552.65,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "datacomp_l_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "metaclip_fullcc",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "commonpool_l_laion_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "commonpool_l_clip_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "laion400m_e31",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "laion2b_s34b_b88k",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "laion400m_e32",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "datacomp_xl_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "commonpool_l_basic_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "metaclip_400m",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "commonpool_l_text_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "commonpool_l_image_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16",
+    "image_size": 224.0,
+    "mparams": 149.62,
+    "gflops": 41.09,
+    "pretraining_data": "commonpool_l_s1b_b8k",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-B-16-SigLIP",
+    "image_size": 224.0,
+    "mparams": 203.16,
+    "gflops": 46.44,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-B-16-SigLIP-256",
+    "image_size": 256.0,
+    "mparams": 203.2,
+    "gflops": 57.84,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-B-16-SigLIP-384",
+    "image_size": 384.0,
+    "mparams": 203.45,
+    "gflops": 123.15,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-B-16-SigLIP-512",
+    "image_size": 512.0,
+    "mparams": 203.79,
+    "gflops": 227.26,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-B-16-SigLIP-i18n-256",
+    "image_size": 256.0,
+    "mparams": 370.63,
+    "gflops": 57.84,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-B-16-plus-240",
+    "image_size": 240.0,
+    "mparams": 208.38,
+    "gflops": 64.03,
+    "pretraining_data": "laion400m_e31",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-16-plus-240",
+    "image_size": 240.0,
+    "mparams": 208.38,
+    "gflops": 64.03,
+    "pretraining_data": "laion400m_e32",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_m_laion_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_s_text_s13m_b4k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_m_text_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "laion2b_s34b_b79k",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "datacomp_m_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "metaclip_fullcc",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_s_s13m_b4k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_s_clip_s13m_b4k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "laion400m_e32",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_m_image_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_s_laion_s13m_b4k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "laion400m_e31",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "datacomp_xl_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_m_clip_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_s_image_s13m_b4k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_s_basic_s13m_b4k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_m_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "metaclip_400m",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 151.28,
+    "gflops": 14.78,
+    "pretraining_data": "commonpool_m_basic_s128m_b4k",
+    "pertraining_dataset_size_estimate": "128m",
+    "pretraining_dataset_size_estimate_numeric": 128000000.0
+  },
+  {
+    "model": "ViT-B-32-256",
+    "image_size": 256.0,
+    "mparams": 151.29,
+    "gflops": 17.46,
+    "pretraining_data": "datacomp_s34b_b86k",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "ViT-H-14",
+    "image_size": 224.0,
+    "mparams": 986.11,
+    "gflops": 381.68,
+    "pretraining_data": "metaclip_altogether",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-H-14",
+    "image_size": 224.0,
+    "mparams": 986.11,
+    "gflops": 381.68,
+    "pretraining_data": "laion2b_s32b_b79k",
+    "pertraining_dataset_size_estimate": "32b",
+    "pretraining_dataset_size_estimate_numeric": 32000000000.0
+  },
+  {
+    "model": "ViT-H-14",
+    "image_size": 224.0,
+    "mparams": 986.11,
+    "gflops": 381.68,
+    "pretraining_data": "metaclip_fullcc",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-H-14-CLIPA",
+    "image_size": 224.0,
+    "mparams": 968.24,
+    "gflops": 354.02,
+    "pretraining_data": "datacomp1b",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-H-14-CLIPA-336",
+    "image_size": 336.0,
+    "mparams": 968.64,
+    "gflops": 800.88,
+    "pretraining_data": "laion2b",
+    "pertraining_dataset_size_estimate": "2b",
+    "pretraining_dataset_size_estimate_numeric": 2000000000.0
+  },
+  {
+    "model": "ViT-H-14-CLIPA-336",
+    "image_size": 336.0,
+    "mparams": 968.64,
+    "gflops": 800.88,
+    "pretraining_data": "datacomp1b",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "commonpool_xl_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "laion2b_s32b_b82k",
+    "pertraining_dataset_size_estimate": "32b",
+    "pretraining_dataset_size_estimate_numeric": 32000000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "datacomp_xl_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "metaclip_400m",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "commonpool_xl_laion_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "commonpool_xl_clip_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13m",
+    "pretraining_dataset_size_estimate_numeric": 13000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "laion400m_e32",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "laion400m_e31",
+    "pertraining_dataset_size_estimate": "400m",
+    "pretraining_dataset_size_estimate_numeric": 400000000.0
+  },
+  {
+    "model": "ViT-L-14",
+    "image_size": 224.0,
+    "mparams": 427.62,
+    "gflops": 175.33,
+    "pretraining_data": "metaclip_fullcc",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-L-14-336",
+    "image_size": 336.0,
+    "mparams": 427.94,
+    "gflops": 395.22,
+    "pretraining_data": "openai",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-L-14-CLIPA",
+    "image_size": 224.0,
+    "mparams": 414.21,
+    "gflops": 167.5,
+    "pretraining_data": "datacomp1b",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-L-14-CLIPA-336",
+    "image_size": 336.0,
+    "mparams": 414.54,
+    "gflops": 387.39,
+    "pretraining_data": "datacomp1b",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-L-16-SigLIP-256",
+    "image_size": 256.0,
+    "mparams": 652.15,
+    "gflops": 201.62,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-L-16-SigLIP-384",
+    "image_size": 384.0,
+    "mparams": 652.48,
+    "gflops": 422.91,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-SO400M-14-SigLIP",
+    "image_size": 224.0,
+    "mparams": 877.36,
+    "gflops": 233.54,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-SO400M-14-SigLIP-378",
+    "image_size": null,
+    "mparams": null,
+    "gflops": null,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-SO400M-14-SigLIP-384",
+    "image_size": 384.0,
+    "mparams": 877.96,
+    "gflops": 723.48,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-SO400M-16-SigLIP-i18n-256",
+    "image_size": null,
+    "mparams": null,
+    "gflops": null,
+    "pretraining_data": "webli",
+    "pertraining_dataset_size_estimate": "10b",
+    "pretraining_dataset_size_estimate_numeric": 10000000000.0
+  },
+  {
+    "model": "ViT-bigG-14",
+    "image_size": 224.0,
+    "mparams": 2539.57,
+    "gflops": 1065.36,
+    "pretraining_data": "laion2b_s39b_b160k",
+    "pertraining_dataset_size_estimate": "39b",
+    "pretraining_dataset_size_estimate_numeric": 39000000000.0
+  },
+  {
+    "model": "ViT-bigG-14",
+    "image_size": 224.0,
+    "mparams": 2539.57,
+    "gflops": 1065.36,
+    "pretraining_data": "metaclip_fullcc",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "ViT-bigG-14-CLIPA",
+    "image_size": 224.0,
+    "mparams": 2517.22,
+    "gflops": 1007.93,
+    "pretraining_data": "datacomp1b",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-bigG-14-CLIPA-336",
+    "image_size": 336.0,
+    "mparams": 2517.76,
+    "gflops": 2271.58,
+    "pretraining_data": "datacomp1b",
+    "pertraining_dataset_size_estimate": "1b",
+    "pretraining_dataset_size_estimate_numeric": 1000000000.0
+  },
+  {
+    "model": "ViT-g-14",
+    "image_size": 224.0,
+    "mparams": 1366.68,
+    "gflops": 581.15,
+    "pretraining_data": "laion2b_s12b_b42k",
+    "pertraining_dataset_size_estimate": "12b",
+    "pretraining_dataset_size_estimate_numeric": 12000000000.0
+  },
+  {
+    "model": "ViT-g-14",
+    "image_size": 224.0,
+    "mparams": 1366.68,
+    "gflops": 581.15,
+    "pretraining_data": "laion2b_s34b_b88k",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "convnext_base",
+    "image_size": 224.0,
+    "mparams": 151.52,
+    "gflops": 36.67,
+    "pretraining_data": "laion400m_s13b_b51k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "convnext_base_w",
+    "image_size": 256.0,
+    "mparams": 179.39,
+    "gflops": 49.38,
+    "pretraining_data": "laion_aesthetic_s13b_b82k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "convnext_base_w",
+    "image_size": 256.0,
+    "mparams": 179.39,
+    "gflops": 49.38,
+    "pretraining_data": "laion2b_s13b_b82k_augreg",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "convnext_base_w",
+    "image_size": 256.0,
+    "mparams": 179.39,
+    "gflops": 49.38,
+    "pretraining_data": "laion2b_s13b_b82k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "convnext_base_w_320",
+    "image_size": 320.0,
+    "mparams": 179.39,
+    "gflops": 71.94,
+    "pretraining_data": "laion_aesthetic_s13b_b82k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "convnext_base_w_320",
+    "image_size": 320.0,
+    "mparams": 179.39,
+    "gflops": 71.94,
+    "pretraining_data": "laion_aesthetic_s13b_b82k_augreg",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "convnext_large_d",
+    "image_size": 256.0,
+    "mparams": 351.77,
+    "gflops": 107.5,
+    "pretraining_data": "laion2b_s26b_b102k_augreg",
+    "pertraining_dataset_size_estimate": "26b",
+    "pretraining_dataset_size_estimate_numeric": 26000000000.0
+  },
+  {
+    "model": "convnext_large_d_320",
+    "image_size": 320.0,
+    "mparams": 351.77,
+    "gflops": 157.98,
+    "pretraining_data": "laion2b_s29b_b131k_ft_soup",
+    "pertraining_dataset_size_estimate": "29b",
+    "pretraining_dataset_size_estimate_numeric": 29000000000.0
+  },
+  {
+    "model": "convnext_large_d_320",
+    "image_size": 320.0,
+    "mparams": 351.77,
+    "gflops": 157.98,
+    "pretraining_data": "laion2b_s29b_b131k_ft",
+    "pertraining_dataset_size_estimate": "29b",
+    "pretraining_dataset_size_estimate_numeric": 29000000000.0
+  },
+  {
+    "model": "convnext_xxlarge",
+    "image_size": 256.0,
+    "mparams": 1200.58,
+    "gflops": 443.03,
+    "pretraining_data": "laion2b_s34b_b82k_augreg_rewind",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "convnext_xxlarge",
+    "image_size": 256.0,
+    "mparams": 1200.58,
+    "gflops": 443.03,
+    "pretraining_data": "laion2b_s34b_b82k_augreg",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "convnext_xxlarge",
+    "image_size": 256.0,
+    "mparams": 1200.58,
+    "gflops": 443.03,
+    "pretraining_data": "laion2b_s34b_b82k_augreg_soup",
+    "pertraining_dataset_size_estimate": "34b",
+    "pretraining_dataset_size_estimate_numeric": 34000000000.0
+  },
+  {
+    "model": "nllb-clip-base",
+    "image_size": 224.0,
+    "mparams": 501.89,
+    "gflops": 369.6,
+    "pretraining_data": "v1",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "nllb-clip-base-siglip",
+    "image_size": 384.0,
+    "mparams": 507.47,
+    "gflops": 472.91,
+    "pretraining_data": "v1",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "nllb-clip-base-siglip",
+    "image_size": 384.0,
+    "mparams": 507.47,
+    "gflops": 472.91,
+    "pretraining_data": "mrl",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "nllb-clip-large",
+    "image_size": 224.0,
+    "mparams": 1399.22,
+    "gflops": 1468.46,
+    "pretraining_data": "v1",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "nllb-clip-large-siglip",
+    "image_size": 384.0,
+    "mparams": 1195.5,
+    "gflops": 1804.22,
+    "pretraining_data": "mrl",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "nllb-clip-large-siglip",
+    "image_size": 384.0,
+    "mparams": 1195.5,
+    "gflops": 1804.22,
+    "pretraining_data": "v1",
+    "pertraining_dataset_size_estimate": null,
+    "pretraining_dataset_size_estimate_numeric": null
+  },
+  {
+    "model": "roberta-ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 212.72,
+    "gflops": 105.87,
+    "pretraining_data": "laion2b_s12b_b32k",
+    "pertraining_dataset_size_estimate": "12b",
+    "pretraining_dataset_size_estimate_numeric": 12000000000.0
+  },
+  {
+    "model": "xlm-roberta-base-ViT-B-32",
+    "image_size": 224.0,
+    "mparams": 366.12,
+    "gflops": 105.87,
+    "pretraining_data": "laion5b_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  },
+  {
+    "model": "xlm-roberta-large-ViT-H-14",
+    "image_size": 224.0,
+    "mparams": 1193.01,
+    "gflops": 671.01,
+    "pretraining_data": "frozen_laion5b_s13b_b90k",
+    "pertraining_dataset_size_estimate": "13b",
+    "pretraining_dataset_size_estimate_numeric": 13000000000.0
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "model": "llava-llama3-1.1:8b"
+  },
+  {
+    "model": "llava-1.6:7b"
+  },
+  {
+    "model": "llava-1.6:13b"
+  },
+  {
+    "model": "llava-1.6:34b"
+  },
+  {
+    "model": "gemma3:4b"
+  },
+  {
+    "model": "gemma3:12b"
+  },
+  {
+    "model": "gemma3:27b"
+  },
+  {
+    "model": "llama3.2-vision:90b"
+  },
+  {
+    "model": "gpt-4o-mini-2024-07-18"
+  },
+  {
+    "model": "gpt-4o-2024-08-06"
+  }
+]

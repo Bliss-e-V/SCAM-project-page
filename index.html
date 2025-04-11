@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCAM: A Real-World Typographic Robustness Evaluation for Multimodal Foundation Models</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>SCAM: A Real-World Typographic Robustness Evaluation for Multimodal Foundation Models</h1>
+            <div class="authors">
+                <p class="header-label">Authors</p>
+                <p>
+                    <a href="https://www.linkedin.com/in/justus-westerhoff/">Justus Westerhoff</a><sup>1,2</sup>,
+                    <a href="https://github.com/blinapurellku">Erblina Purelku</a><sup>1,3,4</sup>,
+                    <a href="https://github.com/jakhac">Jakob Hackstein</a><sup>1,4</sup>,
+                    <a href="https://www.linkedin.com/in/leo-pinetzki/">Leo Pinetzki</a><sup>1,4</sup>,
+                    <a href="https://www.linkedin.com/in/lorenz-hufe">Lorenz Hufe</a><sup>1,3</sup>
+                </p>
+                <p class="header-label">Further Contributors</p>
+                <p>
+                    <a href="https://github.com/JonasLoos/">Jonas Loos</a><sup>1</sup>,
+                    <a href="https://www.linkedin.com/in/joseph-tsch%C3%B6rner-12818427a/">Joseph
+                        Tschörner</a><sup>1</sup>,
+                    <a href="https://www.linkedin.com/in/zeynep-altayli-4213a6279/">Zeynep Altayli</a><sup>1</sup>,
+                    <a href="#">Philippa Ringe</a><sup>1</sup>
+                </p>
+                <p class="header-label">Affiliations</p>
+                <p class="affiliations">
+                    <sup>1</sup><a href="https://bliss.berlin/">BLISS e.V.</a>,
+                    <sup>2</sup><a
+                        href="https://projekt.bht-berlin.de/data-science/graduate-school/justus-westerhoff">Berliner
+                        Hochschule für
+                        Technik</a>,
+                    <sup>3</sup><a href="https://www.hhi.fraunhofer.de/">Fraunhofer HHI</a>,
+                    <sup>4</sup><a href="https://www.tu.berlin/">Technische Universität Berlin</a>,
+                </p>
+            </div>
+            <div class="links">
+                <a href="https://arxiv.org/abs/2504.04893" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 5px;">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    Preprint (arXiv)
+                </a>
+                <a href="https://github.com/Bliss-e-V/SCAM" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 5px;">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                    Code (GitHub)
+                </a>
+                <a href="https://huggingface.co/datasets/BLISS-e-V/SCAM" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 5px;">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    Dataset (Hugging Face)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="interactive-examples">
+        <div class="container">
+            <p class="teaser-text"><i>We introduce SCAM datasets to study and evaluate the robustness of multimodal
+                    foundation models against typographic attacks.</i></p>
+            <div class="explorer-container">
+                <!-- Left column: Dataset images -->
+                <div class="dataset-images">
+                    <div class="dataset-variant">
+                        <div class="variant-header-container">
+                            <h3>SCAM</h3>
+                            <p>Real-world Typographic Attack</p>
+                        </div>
+                        <div class="image-container">
+                            <img id="scam-image" src="" alt="SCAM dataset example">
+                        </div>
+                    </div>
+                    <div class="dataset-variant">
+                        <div class="variant-header-container">
+                            <h3>SynthSCAM</h3>
+                            <p>Synthetic Typographic Attack</p>
+                        </div>
+                        <div class="image-container">
+                            <img id="synthscam-image" src="" alt="SynthSCAM dataset example">
+                        </div>
+                    </div>
+                    <div class="dataset-variant">
+                        <div class="variant-header-container">
+                            <h3>NoSCAM</h3>
+                            <p>Removed Attack</p>
+                        </div>
+                        <div class="image-container">
+                            <img id="noscam-image" src="" alt="NoSCAM dataset example">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flow arrows from left to center -->
+                <div class="flow-arrows left-arrows">
+                    <svg class="arrow-svg" viewBox="0 0 100 700" preserveAspectRatio="none">
+                        <path class="arrow-path top-arrow"
+                            d="M 0,60 C 30,60 70,70 90,140 L 100,120 M 90,140 L 70,130" />
+                        <path class="arrow-path middle-arrow"
+                            d="M 0,350 C 30,350 70,350 90,350 L 70,330 M 90,350 L 70,370" />
+                        <path class="arrow-path bottom-arrow"
+                            d="M 0,640 C 30,640 70,630 90,560 L 100,580 M 90,560 L 70,570" />
+                    </svg>
+                </div>
+
+                <!-- Center column: Model selector -->
+                <div class="model-processor">
+                    <h3>Model</h3>
+                    <div class="mode-selector">
+                        <div class="mode-option">
+                            <input type="radio" id="vlm-mode" name="mode" value="vlm" checked>
+                            <label for="vlm-mode">VLM</label>
+                        </div>
+                        <div class="mode-option">
+                            <input type="radio" id="lvlm-mode" name="mode" value="lvlm">
+                            <label for="lvlm-mode">LVLM</label>
+                        </div>
+                    </div>
+                    <select id="model-selector">
+                        <!-- Options will be populated via JavaScript -->
+                    </select>
+                    <div class="model-info">
+                        <div class="model-property">
+                            <span id="model-params">-</span> params
+                        </div>
+                        <div class="model-property">
+                            <span id="model-image-size">-</span> px
+                        </div>
+                        <div class="model-property" id="model-prompt-container">
+                            <button class="prompt-arrow left-arrow" id="prev-prompt-button"
+                                aria-label="Previous prompt">⟨</button>
+                            <span id="model-prompt">-</span>
+                            <button class="prompt-arrow right-arrow" id="next-prompt-button"
+                                aria-label="Next prompt">⟩</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flow arrows from center to right -->
+                <div class="flow-arrows right-arrows">
+                    <svg class="arrow-svg" viewBox="0 0 100 700" preserveAspectRatio="none">
+                        <path class="arrow-path top-arrow" d="M 10,140 C 30,60 70,60 100,60 L 80,75 M 100,60 L 80,45" />
+                        <path class="arrow-path middle-arrow"
+                            d="M 10,350 C 30,350 70,350 100,350 L 80,330 M 100,350 L 80,370" />
+                        <path class="arrow-path bottom-arrow"
+                            d="M 10,560 C 30,640 70,640 100,640 L 80,620 M 100,640 L 80,660" />
+                    </svg>
+                </div>
+
+                <!-- Right column: Results -->
+                <div class="similarity-results">
+                    <div class="results-container">
+                        <div class="result">
+                            <div class="score-container">
+                                <div class="progress-container">
+                                    <div class="label-container">
+                                        <span><span class="explorer-label-intro">object:</span> <span
+                                                id="scam-object-label">-</span></span>
+                                        <span id="scam-object-score" class="score-value">-</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div id="scam-object-bar" class="bar-fill"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="label-container">
+                                        <span><span class="explorer-label-intro">attack:</span> <span
+                                                id="scam-attack-label">-</span></span>
+                                        <span id="scam-attack-score" class="score-value">-</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div id="scam-attack-bar" class="bar-fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result">
+                            <div class="score-container">
+                                <div class="progress-container">
+                                    <div class="label-container">
+                                        <span><span class="explorer-label-intro">object:</span> <span
+                                                id="synthscam-object-label">-</span></span>
+                                        <span id="synthscam-object-score" class="score-value">-</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div id="synthscam-object-bar" class="bar-fill"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="label-container">
+                                        <span><span class="explorer-label-intro">attack:</span> <span
+                                                id="synthscam-attack-label">-</span></span>
+                                        <span id="synthscam-attack-score" class="score-value">-</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div id="synthscam-attack-bar" class="bar-fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result">
+                            <div class="score-container">
+                                <div class="progress-container">
+                                    <div class="label-container">
+                                        <span><span class="explorer-label-intro">object:</span> <span
+                                                id="noscam-object-label">-</span></span>
+                                        <span id="noscam-object-score" class="score-value">-</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div id="noscam-object-bar" class="bar-fill"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="label-container">
+                                        <span><span class="explorer-label-intro">attack:</span> <span
+                                                id="noscam-attack-label">-</span></span>
+                                        <span id="noscam-attack-score" class="score-value">-</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div id="noscam-attack-bar" class="bar-fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-controls">
+                <button id="prev-example" class="button nav-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 5px;">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Prev.
+                </button>
+                <div class="example-counter">
+                    <span id="current-example-num">-</span> / <span id="total-examples">-</span>
+                </div>
+                <button id="next-example" class="button nav-button">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-left: 5px;">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="abstract">
+        <div class="container">
+            <h2>Abstract</h2>
+            <p>Typographic attacks exploit the interplay between text and visual content in multimodal foundation
+                models, causing misclassifications when misleading text is embedded within images.
+                However, existing datasets are limited in size and diversity, making it difficult to study such
+                vulnerabilities.
+                In this paper, we introduce SCAM, the largest and most diverse dataset of real-world typographic attack
+                images to date, containing images across hundreds of object categories and attack words.</p>
+
+            <p>Through extensive benchmarking of Vision-Language Models (VLMs) on SCAM, we demonstrate that typographic
+                attacks significantly degrade performance, and identify that training data and model architecture
+                influence the susceptibility to these attacks.
+                Our findings reveal that typographic attacks persist in state-of-the-art Large Vision-Language Models
+                (LVLMs) due to the choice of their vision encoder, though larger Large Language Models (LLMs) backbones
+                help mitigate their vulnerability.</p>
+
+            <h3>Key Contributions</h3>
+            <ul>
+                <li>Introduction of SCAM, the largest real-world typographic attack dataset to date</li>
+                <li>Comprehensive evaluation of VLMs and LVLMs, revealing an average drop in accuracy of 26%</li>
+                <li>Evidence that synthetic attacks closely resemble real-world attacks, validating their use in
+                    research</li>
+                <li>Finding that LVLMs inherit vulnerabilities from vision encoders, but larger LLM backbones mitigate
+                    weaknesses</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="dataset">
+        <div class="container">
+            <h2>SCAM Dataset</h2>
+            <p>SCAM is the largest and most diverse real-world typographic attack dataset to date, containing
+                images across hundreds of object categories and attack words.</p>
+
+            <div class="dataset-stats">
+                <div class="stat-box">
+                    <div class="stat">
+                        <h4>1,162</h4>
+                        <p>Data points</p>
+                    </div>
+                    <div class="stat">
+                        <h4>660</h4>
+                        <p>Distinct object labels</p>
+                    </div>
+                    <div class="stat">
+                        <h4>206</h4>
+                        <p>Unique attack words</p>
+                    </div>
+                    <!-- <div class="stat">
+                        <h4>1,147</h4>
+                        <p>Unique object-word combinations</p>
+                    </div> -->
+                </div>
+
+                <div class="dataset-comparison">
+                    <h4>Attack Word Categories</h4>
+                    <div class="comparison-image">
+                        <img src="images/category_proportions.svg"
+                            alt="Distribution of attack words in SCAM into categories">
+                    </div>
+                    <p>Distribution of attack words in SCAM into categories, highlighting both everyday terms and
+                        safety-critical vocabulary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="methodology">
+        <div class="container">
+            <h2>Evaluation Methodology</h2>
+            <div class="methodology-container">
+                <div class="methodology-vlm">
+                    <h3>VLM Evaluation</h3>
+                    <img src="images/method_VLM.svg" alt="VLM Evaluation Methodology">
+                    <p>We evaluate the performance of VLMs in a zero-shot classification task. For each image, we
+                        compute the cosine similarity between its embedding and the text embeddings of both the object
+                        label and the attack word. The predicted label is determined based on the highest cosine
+                        similarity score.</p>
+                </div>
+                <div class="methodology-lvlm">
+                    <h3>LVLM Evaluation</h3>
+                    <img src="images/method_LVLM.svg" alt="LVLM Evaluation Methodology">
+                    <p>To assess the robustness of an LVLM against typographic attacks, we evaluate whether its output
+                        changes when exposed to typographic modifications. Our evaluation involves providing the model
+                        with an image along with a simple prompt asking it to identify what entity is depicted in the
+                        image with two options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results">
+        <div class="container">
+            <h2>Results</h2>
+            <div class="result-section">
+                <h3>Impact on Vision-Language Models</h3>
+                <div class="result-figure">
+                    <img src="images/all_evals_together.svg" alt="VLM Results" style="max-height: 250px;">
+                </div>
+                <p>Accuracy distribution of 99 VLMs across NoSCAM, SCAM, and SynthSCAM datasets. VLMs experience an
+                    average accuracy drop of 26% when evaluated on the SCAM dataset, with an even steeper decline of 35%
+                    on SynthSCAM.</p>
+            </div>
+
+            <div class="result-section">
+                <h3>Impact on Large Vision-Language Models and Dependence on Prompt</h3>
+                <div class="result-figure">
+                    <img src="images/lvlm_evals.svg" alt="LVLM Results" style="max-height: 550px;">
+                </div>
+                <p>Smaller LLaVA models suffer substantial accuracy drops of 30-50%, while models with larger LLM
+                    backbones exhibit better performance under attack.
+                    Further, we evaluate whether prompting LVLMs to ignore the attack and focus on the object improves
+                    robustness. While we cannot rule out the existence of an effective prompt, our results suggest it is
+                    not effective.</p>
+            </div>
+
+            <div class="result-section">
+                <h3>Impact of Model Parameters</h3>
+                <div class="result-figure">
+                    <img src="images/model_mparams_vs_lost_to_attack.svg" alt="Model Parameters vs Performance Drop"
+                        style="max-height: 250px;">
+                </div>
+                <p>Susceptibility to typographic attack is agnostic of VLMs size, measured in millions of parameters.
+                    While model size alone does not correlate with robustness, larger LLM backbones in LVLMs help
+                    mitigate vulnerability to typographic attacks.</p>
+            </div>
+
+            <div class="result-section">
+                <h3>Impact of Attack Size</h3>
+                <div class="result-figure">
+                    <img src="images/postit_size_vs_object_win_ratio.svg" alt="Post-it Size vs Object Win Ratio"
+                        style="max-height: 300px;">
+                </div>
+                <p>Model accuracy decreases as the post-it area increases. The size of the attack text correlates with
+                    model accuracy, with larger post-it notes causing greater performance degradation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="key-findings">
+        <div class="container">
+            <h2>Key Findings</h2>
+            <div class="findings">
+                <div class="finding">
+                    <div class="icon">📈</div>
+                    <h3>Performance Impact</h3>
+                    <p>Typographic attacks cause an average accuracy drop of 26% in VLMs and up to 50% in smaller
+                        LLaVA models.</p>
+                </div>
+                <div class="finding">
+                    <div class="icon">👁️</div>
+                    <h3>Vision Encoder Vulnerability</h3>
+                    <p>LVLMs inherit vulnerability to typographic attacks from their vision encoders, particularly the
+                        ViT-L-14-336 backbone.</p>
+                </div>
+                <div class="finding">
+                    <div class="icon">🧠</div>
+                    <h3>LLM Backbone Effect</h3>
+                    <p>Larger LLM backbones can compensate for vision encoder limitations, making models more resilient
+                        to typographic attacks.</p>
+                </div>
+                <div class="finding">
+                    <div class="icon">🔄</div>
+                    <h3>Synthetic Validity</h3>
+                    <p>Synthetic typographic attacks closely mirror real-world scenarios, validating their use for
+                        evaluating model robustness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources">
+        <div class="container">
+            <h2>Resources</h2>
+            <div class="resource-links">
+                <div class="resource">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Paper</h3>
+                    <a href="https://arxiv.org/abs/2504.04893" class="button">arXiv</a>
+                </div>
+                <div class="resource">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Code</h3>
+                    <a href="https://github.com/Bliss-e-V/SCAM" class="button">GitHub Repository</a>
+                </div>
+                <div class="resource">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                    </div>
+                    <h3>Dataset</h3>
+                    <a href="https://huggingface.co/datasets/BLISS-e-V/SCAM" class="button">Hugging Face</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="citation">
+        <div class="container">
+            <h2>Citation</h2>
+            <div class="citation-box">
+                <pre id="citation-text">@misc{scambliss2025,
+    title={SCAM: A Real-World Typographic Robustness Evaluation for Multimodal Foundation Models},
+    author={Justus Westerhoff and Erblina Purellku and Jakob Hackstein and Leo Pinetzki and Lorenz Hufe},
+    year={2025},
+    eprint={2504.04893},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2504.04893},
+}</pre>
+                <button id="copy-citation" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: text-bottom; margin-right: 5px;">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BLISS e.V.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{
+  "columns": [
+    "llava-llama3-1.1:8b_object_similarities",
+    "llava-llama3-1.1:8b_attack_similarities",
+    "llava-1.6:7b_object_similarities",
+    "llava-1.6:7b_attack_similarities",
+    "llava-1.6:13b_object_similarities",
+    "llava-1.6:13b_attack_similarities",
+    "llava-1.6:34b_object_similarities",
+    "llava-1.6:34b_attack_similarities",
+    "gemma3:4b_object_similarities",
+    "gemma3:4b_attack_similarities",
+    "gemma3:12b_object_similarities",
+    "gemma3:12b_attack_similarities",
+    "gemma3:27b_object_similarities",
+    "gemma3:27b_attack_similarities",
+    "llama3.2-vision:90b_object_similarities",
+    "llama3.2-vision:90b_attack_similarities",
+    "gpt-4o-mini-2024-07-18_object_similarities",
+    "gpt-4o-mini-2024-07-18_attack_similarities",
+    "gpt-4o-2024-08-06_object_similarities",
+    "gpt-4o-2024-08-06_attack_similarities"
+  ],
+  "models": [
+    "llava-llama3-1.1:8b",
+    "llava-1.6:7b",
+    "llava-1.6:13b",
+    "llava-1.6:34b",
+    "gemma3:4b",
+    "gemma3:12b",
+    "gemma3:27b",
+    "llama3.2-vision:90b",
+    "gpt-4o-mini-2024-07-18",
+    "gpt-4o-2024-08-06"
+  ],
+  "num_rows": 6972,
+  "num_columns": 20
+}
