@@ -268,6 +268,8 @@ def main():
     # Adjust the sorting of models
     models = [
         "llava-llama3-1.1:8b",
+        "llava-1.5:7b-CLIPA",
+        "llava-1.5:7b-openai-reprod",
         "llava-1.6:7b",
         "llava-1.6:13b",
         "llava-1.6:34b",
@@ -277,7 +279,20 @@ def main():
         "llama3.2-vision:90b",
         "gpt-4o-mini-2024-07-18",
         "gpt-4o-2024-08-06",
+        "llama4:scout",
     ]
+
+    # Print additional and missing models
+    input_models = set(input_df["model"].unique())
+    expected_models = set(models)
+    additional_models = input_models - expected_models
+    missing_models = expected_models - input_models
+    if additional_models:
+        print(f"Additional models in input: {sorted(additional_models)}")
+    if missing_models:
+        print(f"Missing models from input: {sorted(missing_models)}")
+
+    # Sort the DataFrame by the specified model order
     input_df["model"] = pd.Categorical(
         input_df["model"], categories=models, ordered=True
     )
