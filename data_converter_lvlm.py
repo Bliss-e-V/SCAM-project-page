@@ -47,8 +47,9 @@ def process_input_df(
         filename_mapping = dict(zip(tmp["old_filename"], tmp["new_filename"]))
         print(f"Mapping {len(filename_mapping)} filenames")
         df_copy = df.copy()
-        df["image_path"] = df["image_path"].map(
-            lambda x: filename_mapping.get(x.split("/")[-1], None)
+        # create a `image_id` column based on the (mapped) filename. If no mapping is found, assume the image name is of the new format.
+        df["image_id"] = df["image_path"].map(
+            lambda x: filename_mapping.get(x.split("/")[-1], (x[-13:] + '.jpg') if "SCAM_img" in x else None)
         )
         if df["image_path"].isna().sum() > 0:
             print(
@@ -57,6 +58,10 @@ def process_input_df(
             print(
                 f"Example failures: {df_copy[df['image_path'].isna()]['image_path'].head().tolist()}"
             )
+        # Print how many entries do not contain 'SCAM' in the dataset column (should be 0 if filtered correctly)
+        non_scam_count = (~df["dataset"].str.contains("SCAM")).sum()
+        if non_scam_count > 0:
+            print(f"Invalid entries without 'SCAM' in final filename: {non_scam_count}")
 
     # Define model properties columns - simplified to just model name
     model_columns = ["model"]
@@ -86,11 +91,6 @@ def process_input_df(
         "object_similarities",
         "attack_similarities",
     ]
-
-    # Extract image_id from image_path - use the filename as the image_id
-    df["image_id"] = df["image_path"].apply(
-        lambda x: Path(x).name if isinstance(x, str) else None
-    )
 
     # Create unique image identifier based on image_id, dataset, and prompt_id
     df["unique_id"] = (
@@ -213,7 +213,7 @@ def generate_similarity_files(
         if "postit_area_pct" not in image_groups[image_id]:
             image_groups[image_id]["postit_area_pct"] = postit_area_pct
         else:
-            if image_groups[image_id]["postit_area_pct"] != postit_area_pct:
+            if abs(image_groups[image_id]["postit_area_pct"] - postit_area_pct) > 0.01:
                 print(
                     f"Warning: postit_area_pct mismatch for {image_id} - {postit_area_pct} != {image_groups[image_id]['postit_area_pct']}"
                 )
