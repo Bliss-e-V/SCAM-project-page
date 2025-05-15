@@ -3,6 +3,12 @@
     "model": "llava-llama3-1.1:8b"
   },
   {
+    "model": "llava-1.5:7b-CLIPA"
+  },
+  {
+    "model": "llava-1.5:7b-openai-reprod"
+  },
+  {
     "model": "llava-1.6:7b"
   },
   {
@@ -28,5 +34,8 @@
   },
   {
     "model": "gpt-4o-2024-08-06"
+  },
+  {
+    "model": "llama4:scout"
   }
 ]

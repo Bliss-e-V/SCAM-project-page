@@ -2,6 +2,10 @@
   "columns": [
     "llava-llama3-1.1:8b_object_similarities",
     "llava-llama3-1.1:8b_attack_similarities",
+    "llava-1.5:7b-CLIPA_object_similarities",
+    "llava-1.5:7b-CLIPA_attack_similarities",
+    "llava-1.5:7b-openai-reprod_object_similarities",
+    "llava-1.5:7b-openai-reprod_attack_similarities",
     "llava-1.6:7b_object_similarities",
     "llava-1.6:7b_attack_similarities",
     "llava-1.6:13b_object_similarities",
@@ -19,10 +23,14 @@
     "gpt-4o-mini-2024-07-18_object_similarities",
     "gpt-4o-mini-2024-07-18_attack_similarities",
     "gpt-4o-2024-08-06_object_similarities",
-    "gpt-4o-2024-08-06_attack_similarities"
+    "gpt-4o-2024-08-06_attack_similarities",
+    "llama4:scout_object_similarities",
+    "llama4:scout_attack_similarities"
   ],
   "models": [
     "llava-llama3-1.1:8b",
+    "llava-1.5:7b-CLIPA",
+    "llava-1.5:7b-openai-reprod",
     "llava-1.6:7b",
     "llava-1.6:13b",
     "llava-1.6:34b",
@@ -31,8 +39,9 @@
     "gemma3:27b",
     "llama3.2-vision:90b",
     "gpt-4o-mini-2024-07-18",
-    "gpt-4o-2024-08-06"
+    "gpt-4o-2024-08-06",
+    "llama4:scout"
   ],
   "num_rows": 6972,
-  "num_columns": 20
+  "num_columns": 26
 }

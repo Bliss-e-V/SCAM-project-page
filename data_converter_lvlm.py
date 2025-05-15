@@ -102,7 +102,7 @@ def process_input_df(
     )
     unique_images = (
         df[["unique_id", "image_id", "prompt_id"] + image_base_columns]
-        .drop_duplicates()
+        .drop_duplicates(subset=["unique_id"])
         .reset_index(drop=True)
     )
     unique_models = df["model"].unique()
