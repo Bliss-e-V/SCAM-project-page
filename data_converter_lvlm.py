@@ -298,6 +298,14 @@ def main():
     )
     input_df = input_df.sort_values("model")
 
+    # update model names to match ollama
+    input_df["model"] = input_df["model"].replace({
+        "llava-llama3-1.1:8b": "llava-llama3:8b",
+        "llava-1.6:7b": "llava:7b-v1.6",
+        "llava-1.6:13b": "llava:13b-v1.6",
+        "llava-1.6:34b": "llava:34b-v1.6",
+    })
+
     # Step 1: Process the input CSV
     print("\n--- Processing input CSV ---")
     models_df, similarity_df = process_input_df(input_df, args.filename_mapping)
