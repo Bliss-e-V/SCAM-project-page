@@ -116,6 +116,22 @@ img {
     background-color: #bebebe;
 }
 
+.accepted-button {
+    border-radius: 20px;
+    padding: 10px 40px;
+    background-color: #2ecc40;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.accepted-button:hover {
+    background-color: #27ae38;
+}
+
 /* Header */
 .header {
     background-color: var(--background-alt);
