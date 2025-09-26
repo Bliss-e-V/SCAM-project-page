@@ -170,10 +170,21 @@ def generate_similarity_files(
                     f"Warning: postit_area_pct mismatch for {image_id} - {postit_area_pct} != {image_groups[image_id]['postit_area_pct']}"
                 )
 
-        # Store row index for this variant
+        # Store row index und unique_key for this variant
         image_groups[image_id]["variants"][dataset] = {
             "row_index": i,
+            "unique_key": f"{image_id}|{dataset}|0",
         }
+
+    # Ensure all three variants are present for each image_id
+    for image_id, group in image_groups.items():
+        for variant in ["SCAM", "NoSCAM", "SynthSCAM"]:
+            if variant not in group["variants"]:
+                print(f"Warning: {variant} missing for {image_id}, filling with placeholder.")
+                group["variants"][variant] = {
+                    "row_index": None,
+                    "unique_key": f"{image_id}|{variant}|0",
+                }
 
     # Convert to list for output
     index_data = list(image_groups.values())

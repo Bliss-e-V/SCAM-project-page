@@ -177,11 +177,13 @@ def generate_similarity_files(
                     f"Warning: postit_area_pct mismatch for {image_id} - {postit_area_pct} != {image_groups[image_id]['postit_area_pct']}"
                 )
 
-        # Store row index, prompt_id, and postit area for this variant
+        # Store row index, prompt_id, and unique_key for this variant
         variant_key = f"{dataset}_{prompt_id}" if prompt_id is not None else dataset
+        unique_key = f"{image_id}|{dataset}|{prompt_id}"
         image_groups[image_id]["variants"][variant_key] = {
             "row_index": i,
             "prompt_id": prompt_id,
+            "unique_key": unique_key,
         }
 
     # Convert to list for output

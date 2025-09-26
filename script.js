@@ -139,7 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let vlmSimilarityData = null;
     let lvlmSimilarityData = null;
     let modelProperties = null;
-    let currentImageIndex = 442; // Start at image 443 (0-based index)
+    let currentImageId = null; // Use image_id for navigation
+    let currentImageIndex = 442; // fallback for initial load
     let currentPromptIndex = 0;
     let isVLMMode = true;  // Toggle between VLM and LVLM modes
     const numLvlmPrompts = 2;
@@ -198,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Initialize the example visualization
+    let masterImageIdList = [];
     async function initializeVisualization() {
         try {
             // Load data in parallel
@@ -209,14 +211,26 @@ document.addEventListener('DOMContentLoaded', function () {
             ]);
             modelProperties = vlmModelProperties;
 
+            // Build image_id lookup maps for both modes
+            vlmSimilarityData.imageIdToIndex = Object.fromEntries(vlmSimilarityData.indexData.map((item, idx) => [item.image_id, idx]));
+            lvlmSimilarityData.imageIdToIndex = Object.fromEntries(lvlmSimilarityData.indexData.map((item, idx) => [item.image_id, idx]));
+
+            // Build master image_id list (union of both)
+            const vlmIds = vlmSimilarityData.indexData.map(item => item.image_id);
+            const lvlmIds = lvlmSimilarityData.indexData.map(item => item.image_id);
+            masterImageIdList = Array.from(new Set([...vlmIds, ...lvlmIds]));
+
+            // Set initial image_id
+            currentImageId = masterImageIdList[currentImageIndex] || masterImageIdList[0];
+
             // Update UI
-            totalExamples.textContent = vlmSimilarityData.totalImages;
+            totalExamples.textContent = masterImageIdList.length;
             updateModelSelector();
 
             // Set up event listeners
-            modelSelector.addEventListener('change', () => updateVisualization(currentImageIndex, modelSelector.value));
-            prevExampleButton.addEventListener('click', loadPreviousExample);
-            nextExampleButton.addEventListener('click', loadNextExample);
+            modelSelector.addEventListener('change', () => updateVisualizationById(currentImageId, modelSelector.value));
+            prevExampleButton.addEventListener('click', loadPreviousExampleById);
+            nextExampleButton.addEventListener('click', loadNextExampleById);
             prevPromptButton.addEventListener('click', loadPreviousPrompt);
             nextPromptButton.addEventListener('click', loadNextPrompt);
 
@@ -226,7 +240,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     isVLMMode = true;
                     modelProperties = vlmModelProperties;
                     updateModelSelector();
-                    updateVisualization(currentImageIndex, modelSelector.value);
+                    // If currentImageId not in VLM, fallback to first image in master list that exists in VLM
+                    if (!(currentImageId in vlmSimilarityData.imageIdToIndex)) {
+                        currentImageId = masterImageIdList.find(id => id in vlmSimilarityData.imageIdToIndex) || vlmSimilarityData.indexData[0].image_id;
+                    }
+                    updateVisualizationById(currentImageId, modelSelector.value);
                 }
             });
 
@@ -235,7 +253,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     isVLMMode = false;
                     modelProperties = lvlmModelProperties;
                     updateModelSelector();
-                    updateVisualization(currentImageIndex, modelSelector.value);
+                    // If currentImageId not in LVLM, fallback to first image in master list that exists in LVLM
+                    if (!(currentImageId in lvlmSimilarityData.imageIdToIndex)) {
+                        currentImageId = masterImageIdList.find(id => id in lvlmSimilarityData.imageIdToIndex) || lvlmSimilarityData.indexData[0].image_id;
+                    }
+                    updateVisualizationById(currentImageId, modelSelector.value);
                 }
             });
 
@@ -246,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setupVariantHoverEffects();
 
             // Load an initial example (start at 443)
-            updateVisualization(currentImageIndex, modelSelector.value);
+            updateVisualizationById(currentImageId, modelSelector.value);
         } catch (error) {
             console.error('Failed to initialize visualization:', error);
         }
@@ -266,22 +288,20 @@ document.addEventListener('DOMContentLoaded', function () {
         totalExamples.textContent = data.totalImages;
     }
 
-    // Load previous example
-    function loadPreviousExample() {
-        const data = isVLMMode ? vlmSimilarityData : lvlmSimilarityData;
-        currentImageIndex = (currentImageIndex > 0) ?
-            currentImageIndex - 1 : data.totalImages - 1;
-
-        updateVisualization(currentImageIndex, modelSelector.value);
+    // Load previous example by image_id
+    function loadPreviousExampleById() {
+        let idx = masterImageIdList.indexOf(currentImageId);
+        idx = (idx > 0) ? idx - 1 : masterImageIdList.length - 1;
+        currentImageId = masterImageIdList[idx];
+        updateVisualizationById(currentImageId, modelSelector.value);
     }
 
-    // Load next example
-    function loadNextExample() {
-        const data = isVLMMode ? vlmSimilarityData : lvlmSimilarityData;
-        currentImageIndex = (currentImageIndex < data.totalImages - 1) ?
-            currentImageIndex + 1 : 0;
-
-        updateVisualization(currentImageIndex, modelSelector.value);
+    // Load next example by image_id
+    function loadNextExampleById() {
+        let idx = masterImageIdList.indexOf(currentImageId);
+        idx = (idx < masterImageIdList.length - 1) ? idx + 1 : 0;
+        currentImageId = masterImageIdList[idx];
+        updateVisualizationById(currentImageId, modelSelector.value);
     }
 
     // Load previous prompt (LVLM only)
@@ -289,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isVLMMode) {
             currentPromptIndex = (currentPromptIndex > 0) ?
                 currentPromptIndex - 1 : numLvlmPrompts - 1;
-            updateVisualization(currentImageIndex, modelSelector.value);
+            updateVisualizationById(currentImageId, modelSelector.value);
         }
     }
 
@@ -298,24 +318,27 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isVLMMode) {
             currentPromptIndex = (currentPromptIndex < numLvlmPrompts - 1) ?
                 currentPromptIndex + 1 : 0;
-            updateVisualization(currentImageIndex, modelSelector.value);
+            updateVisualizationById(currentImageId, modelSelector.value);
         }
     }
 
-    // Update visualization based on example index and model
-    function updateVisualization(imageIndex, modelName) {
+    // Update visualization based on image_id and model
+    function updateVisualizationById(imageId, modelName) {
         const data = isVLMMode ? vlmSimilarityData : lvlmSimilarityData;
-
-        // Get data for this image with all its variants
+        const imageIndex = data.imageIdToIndex[imageId];
+        if (imageIndex === undefined) {
+            console.error('Failed to get image index for image_id:', imageId);
+            return;
+        }
         const imageData = data.getImageWithVariants(imageIndex, modelName);
-
         if (!imageData) {
             console.error('Failed to get image data for index:', imageIndex);
             return;
         }
-
         // Update UI components
-        currentExampleNum.textContent = imageIndex + 1;
+        // Show master index (preserved across modes)
+        const masterIndex = masterImageIdList.indexOf(imageId);
+        currentExampleNum.textContent = masterIndex + 1;
         updateImages(imageData.image_id);
         updateAllLabels(imageData.object_label, imageData.attack_word);
         updateAllScores(imageData.variants, modelName);
@@ -520,16 +543,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update each variant's scores
         Object.entries(scoreElements).forEach(([variantType, elements]) => {
-            const lookupKey = isVLMMode ? variantType : `${variantType}_${currentPromptIndex}`;
-            const variantData = variants[lookupKey];
+            let variantKey = variantType;
+            if (!isVLMMode) {
+                variantKey = `${variantType}_${currentPromptIndex}`;
+            }
+            const variantData = variants[variantKey];
 
+            let objScore, atkScore;
             if (variantData?.similarities && variantData.similarities[objectScoreKey] !== undefined && variantData.similarities[attackScoreKey] !== undefined) {
                 objScore = variantData.similarities[objectScoreKey];
                 atkScore = variantData.similarities[attackScoreKey];
             } else {
                 objScore = NaN;
                 atkScore = NaN;
-                console.error(`No similarity data found for variant: ${lookupKey}, model: ${modelName}, index: ${currentImageIndex}, image_id: ${variants.image_id}`);
+                console.error(`No similarity data found for variant: ${variantKey}, model: ${modelName}`);
             }
 
             updateDatasetScores(
