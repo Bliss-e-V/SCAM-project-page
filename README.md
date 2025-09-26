@@ -2,9 +2,13 @@
 
 [Project Page](https://bliss-e-v.github.io/SCAM-project-page) - [Dataset](https://huggingface.co/datasets/BLISS-e-V/SCAM) - [Paper](https://arxiv.org/abs/2504.04893) - [Main Repository](https://github.com/Bliss-e-V/SCAM)
 
-> Typographic attacks exploit the interplay between text and visual content in multimodal foundation models, causing misclassifications when misleading text is embedded within images. However, existing datasets are limited in size and diversity, making it difficult to study such vulnerabilities. In this paper, we introduce SCAM, the largest and most diverse dataset of real-world typographic attack images to date, containing images across hundreds of object categories and attack words.
-> Through extensive benchmarking of Vision-Language Models (VLMs) on SCAM, we demonstrate that typographic attacks significantly degrade performance, and identify that training data and model architecture influence the susceptibility to these attacks. Our findings reveal that typographic attacks persist in state-of-the-art Large Vision-Language Models (LVLMs) due to the choice of their vision encoder, though larger Large Language Models (LLMs) backbones help mitigate their vulnerability.
-
+> Typographic attacks exploit the interplay between text and visual content in multimodal foundation models, causing misclassifications when misleading text is embedded within images. Existing datasets are limited in size and diversity, making it difficult to study such vulnerabilities.
+In this paper, we introduce SCAM, the largest and most diverse dataset of real-world typographic attack images to date, containing 1162 images across hundreds of object categories and attack words.
+> Through extensive benchmarking of Vision-Language Models on SCAM, we demonstrate that typographic attacks significantly degrade performance, and identify that training data and model architecture influence the susceptibility to these attacks.
+Our findings indicate that typographic attacks remain effective against state-of-the-art Large Vision-Language Models, especially those employing vision encoders inherently vulnerable to such attacks.
+However, employing larger Large Language Model backbones reduces this vulnerability while simultaneously enhancing typographic understanding.
+Additionally, we demonstrate that synthetic attacks closely resemble real-world (handwritten) attacks, validating their use in research.
+Our work provides a comprehensive resource and empirical insights to facilitate future research toward robust and trustworthy multimodal AI systems.
 ---
 
 This is a static website to showcase the SCAM dataset and the results of the robustness evaluation.
