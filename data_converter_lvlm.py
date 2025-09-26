@@ -20,17 +20,13 @@ from time import time
 from pathlib import Path
 
 
-def process_input_df(
-    df: pd.DataFrame, filename_mapping_path, prompt_ids_to_use=[1, 5]
-):
+def process_input_df(df: pd.DataFrame, prompt_ids_to_use=[1, 5]):
     """Process the input dataframe and return dataframes for models and similarity data."""
     # filter datasets
     datasets_to_use = ["SCAM", "NoSCAM", "SynthSCAM"]
     df_ignored = df[~df["dataset"].isin(datasets_to_use)]
     if len(df_ignored) > 0:
-        print(
-            f"Ignoring {len(df_ignored)} rows with datasets not in {datasets_to_use}"
-        )
+        print(f"Ignoring {len(df_ignored)} rows with datasets not in {datasets_to_use}")
         print(f"Ignored datasets: {df_ignored['dataset'].unique()}")
     df = df[df["dataset"].isin(datasets_to_use)]
 
@@ -40,28 +36,6 @@ def process_input_df(
         df["prompt_id"] = df["prompt_id"].map(
             {pid: idx for idx, pid in enumerate(prompt_ids_to_use)}
         )
-
-    # map filenames
-    if filename_mapping_path:
-        tmp = pd.read_csv(filename_mapping_path)
-        filename_mapping = dict(zip(tmp["old_filename"], tmp["new_filename"]))
-        print(f"Mapping {len(filename_mapping)} filenames")
-        df_copy = df.copy()
-        # create a `image_id` column based on the (mapped) filename. If no mapping is found, assume the image name is of the new format.
-        df["image_id"] = df["image_path"].map(
-            lambda x: filename_mapping.get(x.split("/")[-1], (x[-13:] + '.jpg') if "SCAM_img" in x else None)
-        )
-        if df["image_path"].isna().sum() > 0:
-            print(
-                f"Failed to map filenames in {df['image_path'].isna().sum()}/{len(df)} ({df['image_path'].isna().sum()/len(df):.2%}) entries"
-            )
-            print(
-                f"Example failures: {df_copy[df['image_path'].isna()]['image_path'].head().tolist()}"
-            )
-        # Print how many entries do not contain 'SCAM' in the dataset column (should be 0 if filtered correctly)
-        non_scam_count = (~df["dataset"].str.contains("SCAM")).sum()
-        if non_scam_count > 0:
-            print(f"Invalid entries without 'SCAM' in final filename: {non_scam_count}")
 
     # Define model properties columns - simplified to just model name
     model_columns = ["model"]
@@ -92,13 +66,12 @@ def process_input_df(
         "attack_similarities",
     ]
 
+    # Turn NoScam and SynthSCAM all into SCAM, beacuse uniqueness will come from next step
+    df["image_id"] = df["image_path"].str.replace("NoSCAM", "SCAM").str.replace("SynthSCAM", "SCAM")
+
     # Create unique image identifier based on image_id, dataset, and prompt_id
     df["unique_id"] = (
-        df["image_id"]
-        + "|"
-        + df["dataset"].astype(str)
-        + "|"
-        + df["prompt_id"].astype(str)
+        df["image_id"] + "|" + df["dataset"].astype(str) + "|" + df["prompt_id"].astype(str)
     )
     unique_images = (
         df[["unique_id", "image_id", "prompt_id"] + image_base_columns]
@@ -107,9 +80,7 @@ def process_input_df(
     )
     unique_models = df["model"].unique()
 
-    print(
-        f"Processing {len(unique_images)} images across {len(unique_models)} models..."
-    )
+    print(f"Processing {len(unique_images)} images across {len(unique_models)} models...")
 
     # Build column data for each model and metric
     new_columns = {}
@@ -117,9 +88,7 @@ def process_input_df(
         model_data = df[df["model"] == model]
         for metric in metric_columns:
             metric_dict = dict(zip(model_data["unique_id"], model_data[metric]))
-            new_columns[f"{model}_{metric}"] = unique_images["unique_id"].map(
-                metric_dict
-            )
+            new_columns[f"{model}_{metric}"] = unique_images["unique_id"].map(metric_dict)
 
     # Create final DataFrame for similarity data
     similarity_df = pd.concat(
@@ -153,13 +122,9 @@ def generate_similarity_files(
 ):
     """Generate binary and JSON files for similarity data."""
     # Get all columns containing 'similarities' (computed previously)
-    similarity_columns = [
-        col for col in similarity_df.columns if "similarities" in col
-    ]
+    similarity_columns = [col for col in similarity_df.columns if "similarities" in col]
 
-    print(
-        f"Processing {len(similarity_df)} rows with {len(similarity_columns)} similarity cols"
-    )
+    print(f"Processing {len(similarity_df)} rows with {len(similarity_columns)} similarity cols")
 
     # Create and save metadata
     metadata = {
@@ -197,19 +162,13 @@ def generate_similarity_files(
             # Initialize with common data that should be the same across variants
             image_groups[image_id] = {
                 "image_id": image_id,
-                "object_label": (
-                    row["object_label"] if not pd.isna(row["object_label"]) else None
-                ),
-                "attack_word": (
-                    row["attack_word"] if not pd.isna(row["attack_word"]) else None
-                ),
+                "object_label": (row["object_label"] if not pd.isna(row["object_label"]) else None),
+                "attack_word": (row["attack_word"] if not pd.isna(row["attack_word"]) else None),
                 "variants": {},
             }
 
         # posit area
-        postit_area_pct = (
-            row["postit_area_pct"] if not pd.isna(row["postit_area_pct"]) else None
-        )
+        postit_area_pct = row["postit_area_pct"] if not pd.isna(row["postit_area_pct"]) else None
         if "postit_area_pct" not in image_groups[image_id]:
             image_groups[image_id]["postit_area_pct"] = postit_area_pct
         else:
@@ -241,9 +200,6 @@ def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="SCAM Analysis Data Converter")
     parser.add_argument("input", help="Path to the combined results CSV file")
-    parser.add_argument(
-        "filename_mapping", help="Path to the filename mapping CSV file", default=None
-    )
     args = parser.parse_args()
 
     # Set file paths for output
@@ -267,19 +223,20 @@ def main():
 
     # Adjust the sorting of models
     models = [
-        "llava-llama3-1.1:8b",
-        "llava-1.5:7b-CLIPA",
-        "llava-1.5:7b-openai-reprod",
-        "llava-1.6:7b",
-        "llava-1.6:13b",
-        "llava-1.6:34b",
+        "llava-llama3:8b",
+        # "llava-1.5:7b-CLIPA",
+        # "llava-1.5:7b-openai-reprod",
+        "llava:7b-v1.6",
+        "llava:13b-v1.6",
+        "llava:34b-v1.6",
         "gemma3:4b",
         "gemma3:12b",
         "gemma3:27b",
         "llama3.2-vision:90b",
-        "gpt-4o-mini-2024-07-18",
-        "gpt-4o-2024-08-06",
         "llama4:scout",
+        "gpt-4o-mini-2024-07-18",
+        "claude-sonnet-4-20250514",
+        "gpt-4o-2024-08-06",
     ]
 
     # Print additional and missing models
@@ -293,22 +250,12 @@ def main():
         print(f"Missing models from input: {sorted(missing_models)}")
 
     # Sort the DataFrame by the specified model order
-    input_df["model"] = pd.Categorical(
-        input_df["model"], categories=models, ordered=True
-    )
+    input_df["model"] = pd.Categorical(input_df["model"], categories=models, ordered=True)
     input_df = input_df.sort_values("model")
-
-    # update model names to match ollama
-    input_df["model"] = input_df["model"].replace({
-        "llava-llama3-1.1:8b": "llava-llama3:8b",
-        "llava-1.6:7b": "llava:7b-v1.6",
-        "llava-1.6:13b": "llava:13b-v1.6",
-        "llava-1.6:34b": "llava:34b-v1.6",
-    })
 
     # Step 1: Process the input CSV
     print("\n--- Processing input CSV ---")
-    models_df, similarity_df = process_input_df(input_df, args.filename_mapping)
+    models_df, similarity_df = process_input_df(input_df)
     if models_df is None or similarity_df is None:
         sys.exit(1)
 

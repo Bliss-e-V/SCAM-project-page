@@ -3,12 +3,6 @@
     "model": "llava-llama3:8b"
   },
   {
-    "model": "llava-1.5:7b-CLIPA"
-  },
-  {
-    "model": "llava-1.5:7b-openai-reprod"
-  },
-  {
     "model": "llava:7b-v1.6"
   },
   {
@@ -30,12 +24,15 @@
     "model": "llama3.2-vision:90b"
   },
   {
+    "model": "llama4:scout"
+  },
+  {
     "model": "gpt-4o-mini-2024-07-18"
   },
   {
-    "model": "gpt-4o-2024-08-06"
+    "model": "claude-sonnet-4-20250514"
   },
   {
-    "model": "llama4:scout"
+    "model": "gpt-4o-2024-08-06"
   }
 ]

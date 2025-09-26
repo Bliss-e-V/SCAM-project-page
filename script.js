@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        imageId = imageId.replace('.jpg', '.webp');
+        imageId = imageId + '.webp'
         const images = [
             [scamImage, `data_images/SCAM/${imageId}`],
             [noscamImage, `data_images/NoSCAM/${imageId.replace('SCAM', 'NoSCAM')}`],

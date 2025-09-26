@@ -2,10 +2,6 @@
   "columns": [
     "llava-llama3:8b_object_similarities",
     "llava-llama3:8b_attack_similarities",
-    "llava-1.5:7b-CLIPA_object_similarities",
-    "llava-1.5:7b-CLIPA_attack_similarities",
-    "llava-1.5:7b-openai-reprod_object_similarities",
-    "llava-1.5:7b-openai-reprod_attack_similarities",
     "llava:7b-v1.6_object_similarities",
     "llava:7b-v1.6_attack_similarities",
     "llava:13b-v1.6_object_similarities",
@@ -20,17 +16,17 @@
     "gemma3:27b_attack_similarities",
     "llama3.2-vision:90b_object_similarities",
     "llama3.2-vision:90b_attack_similarities",
+    "llama4:scout_object_similarities",
+    "llama4:scout_attack_similarities",
     "gpt-4o-mini-2024-07-18_object_similarities",
     "gpt-4o-mini-2024-07-18_attack_similarities",
+    "claude-sonnet-4-20250514_object_similarities",
+    "claude-sonnet-4-20250514_attack_similarities",
     "gpt-4o-2024-08-06_object_similarities",
-    "gpt-4o-2024-08-06_attack_similarities",
-    "llama4:scout_object_similarities",
-    "llama4:scout_attack_similarities"
+    "gpt-4o-2024-08-06_attack_similarities"
   ],
   "models": [
     "llava-llama3:8b",
-    "llava-1.5:7b-CLIPA",
-    "llava-1.5:7b-openai-reprod",
     "llava:7b-v1.6",
     "llava:13b-v1.6",
     "llava:34b-v1.6",
@@ -38,10 +34,11 @@
     "gemma3:12b",
     "gemma3:27b",
     "llama3.2-vision:90b",
+    "llama4:scout",
     "gpt-4o-mini-2024-07-18",
-    "gpt-4o-2024-08-06",
-    "llama4:scout"
+    "claude-sonnet-4-20250514",
+    "gpt-4o-2024-08-06"
   ],
   "num_rows": 6972,
-  "num_columns": 26
+  "num_columns": 24
 }

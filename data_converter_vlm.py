@@ -20,7 +20,7 @@ from time import time
 from pathlib import Path
 
 
-def process_input_csv(input_file: Path, filename_mapping_path):
+def process_input_csv(input_file: Path):
     """Process the input CSV and return dataframes for models and similarity data."""
     if not input_file.exists():
         print(f"Error: Input file '{input_file}' not found.")
@@ -29,27 +29,12 @@ def process_input_csv(input_file: Path, filename_mapping_path):
     print(f"Reading {input_file}...")
     df = pd.read_csv(input_file)
     # filter datasets
-    datasets_to_use = ["SCAM", "NoSCAM_colors_matched", "SynthSCAM_colors_matched"]
-    datasets_new_names = ["SCAM", "NoSCAM", "SynthSCAM"]
+    datasets_to_use = ["SCAM", "NoSCAM", "SynthSCAM"]
     df_ignored = df[~df["dataset"].isin(datasets_to_use)]
     if len(df_ignored) > 0:
         print(f"Ignoring {len(df_ignored)} rows with datasets not in {datasets_to_use}")
         print(f"Ignored datasets: {df_ignored['dataset'].unique()}")
     df = df[df["dataset"].isin(datasets_to_use)]
-
-    # map filenames
-    if filename_mapping_path:
-        tmp = pd.read_csv(filename_mapping_path)
-        filename_mapping = dict(zip(tmp["old_filename"], tmp["new_filename"]))
-        print(f"Mapping {len(filename_mapping)} filenames")
-        df_copy = df.copy()
-        df["image_path"] = df["image_path"].map(lambda x: filename_mapping.get(x.split("/")[-1], None))
-        if df["image_path"].isna().sum() > 0:
-            print(f"Failed to map filenames in {df['image_path'].isna().sum()}/{len(df)} ({df['image_path'].isna().sum()/len(df):.2%}) entries")
-            print(f"Example failures: {df_copy[df['image_path'].isna()]['image_path'].head().tolist()}")
-
-    # rename datasets
-    df["dataset"] = df["dataset"].map(dict(zip(datasets_to_use, datasets_new_names)))
 
     # Define model properties columns
     model_columns = [
@@ -58,7 +43,7 @@ def process_input_csv(input_file: Path, filename_mapping_path):
         "mparams",
         "gflops",
         "pretraining_data",
-        "pertraining_dataset_size_estimate",
+        "pretraining_dataset_size_estimate",
         "pretraining_dataset_size_estimate_numeric",
     ]
 
@@ -81,22 +66,18 @@ def process_input_csv(input_file: Path, filename_mapping_path):
     ]
 
     # Extract image_id from image_path - use the filename as the image_id
-    df["image_id"] = df["image_path"].apply(
-        lambda x: Path(x).name if isinstance(x, str) else None
-    )
+    df["image_id"] = df["image_path"].apply(lambda x: Path(x).name if isinstance(x, str) else None)
+    # Turn NoScam and SynthSCAM all into SCAM, beacuse uniqueness will come from next step
+    df["image_id"] = df["image_id"].str.replace("NoSCAM", "SCAM").str.replace("SynthSCAM", "SCAM")
 
     # Create unique image identifier based on image_id and dataset
     df["unique_id"] = df["image_id"] + "|" + df["dataset"].astype(str)
     unique_images = (
-        df[["unique_id", "image_id"] + image_base_columns]
-        .drop_duplicates()
-        .reset_index(drop=True)
+        df[["unique_id", "image_id"] + image_base_columns].drop_duplicates().reset_index(drop=True)
     )
     unique_models = df["model"].unique()
 
-    print(
-        f"Processing {len(unique_images)} images across {len(unique_models)} models..."
-    )
+    print(f"Processing {len(unique_images)} images across {len(unique_models)} models...")
 
     # Build column data for each model and metric
     new_columns = {}
@@ -104,9 +85,7 @@ def process_input_csv(input_file: Path, filename_mapping_path):
         model_data = df[df["model"] == model]
         for metric in metric_columns:
             metric_dict = dict(zip(model_data["unique_id"], model_data[metric]))
-            new_columns[f"{model}_{metric}"] = unique_images["unique_id"].map(
-                metric_dict
-            )
+            new_columns[f"{model}_{metric}"] = unique_images["unique_id"].map(metric_dict)
 
     # Create final DataFrame for similarity data
     similarity_df = pd.concat(
@@ -132,12 +111,12 @@ def generate_model_json_files(models_df: pd.DataFrame, models_json: Path):
     return True
 
 
-def generate_similarity_files(similarity_df: pd.DataFrame, metadata_json: Path, binary_file: Path, index_json: Path):
+def generate_similarity_files(
+    similarity_df: pd.DataFrame, metadata_json: Path, binary_file: Path, index_json: Path
+):
     """Generate binary and JSON files for similarity data."""
     # Get all columns containing 'similarities'
-    similarity_columns = [
-        col for col in similarity_df.columns if "similarities" in col
-    ]
+    similarity_columns = [col for col in similarity_df.columns if "similarities" in col]
 
     print(f"Processing {len(similarity_df)} rows with {len(similarity_columns)} similarity cols")
 
@@ -176,12 +155,8 @@ def generate_similarity_files(similarity_df: pd.DataFrame, metadata_json: Path, 
             # Initialize with common data that should be the same across variants
             image_groups[image_id] = {
                 "image_id": image_id,
-                "object_label": (
-                    row["object_label"] if not pd.isna(row["object_label"]) else None
-                ),
-                "attack_word": (
-                    row["attack_word"] if not pd.isna(row["attack_word"]) else None
-                ),
+                "object_label": (row["object_label"] if not pd.isna(row["object_label"]) else None),
+                "attack_word": (row["attack_word"] if not pd.isna(row["attack_word"]) else None),
                 "variants": {},
             }
 
@@ -191,8 +166,9 @@ def generate_similarity_files(similarity_df: pd.DataFrame, metadata_json: Path, 
             image_groups[image_id]["postit_area_pct"] = postit_area_pct
         else:
             if image_groups[image_id]["postit_area_pct"] != postit_area_pct:
-                print(f"Warning: postit_area_pct mismatch for {image_id} - {postit_area_pct} != {image_groups[image_id]['postit_area_pct']}")
-
+                print(
+                    f"Warning: postit_area_pct mismatch for {image_id} - {postit_area_pct} != {image_groups[image_id]['postit_area_pct']}"
+                )
 
         # Store row index for this variant
         image_groups[image_id]["variants"][dataset] = {
@@ -215,12 +191,11 @@ def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="SCAM Analysis Data Converter")
     parser.add_argument("input", help="Path to the combined results CSV file")
-    parser.add_argument("filename_mapping", help="Path to the filename mapping CSV file", default=None)
     args = parser.parse_args()
 
     # Set file paths for output
     input_file = Path(args.input)
-    output_dir = Path('data/')
+    output_dir = Path("data/")
     models_json = output_dir / "vlm_models_properties.json"
     metadata_json = output_dir / "vlm_similarity_metadata.json"
     binary_file = output_dir / "vlm_similarity_data.bin"
@@ -232,7 +207,7 @@ def main():
 
     # Step 1: Process the input CSV
     print("\n--- Processing input CSV ---")
-    models_df, similarity_df = process_input_csv(input_file, args.filename_mapping)
+    models_df, similarity_df = process_input_csv(input_file)
     if models_df is None or similarity_df is None:
         sys.exit(1)
 
